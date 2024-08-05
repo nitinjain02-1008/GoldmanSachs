@@ -18,7 +18,7 @@ package main.java.com.puzzles;
  *   {2,0,0,0,0}  (So_Cal)
  *   }
  *   
- * So total for the optimal path here would be: 2 + 1 + 1 + 1 + 5 = 10
+ * So total for the optimal path here would be: 2 + 0 + 1 + 1 + 1 + 0 + 5 = 10
  * 
  *
  */
