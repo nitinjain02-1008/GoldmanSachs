@@ -11,6 +11,7 @@ import java.util.TreeSet;
 public class LoungeStocking {
 
     public static int stockLounge(List<Integer> stock, List<Integer> supplier, int demand) {
+    	
     	int supplierCount = supplier.size();
 		
 		Map<Integer, Integer> stockMap = new HashMap<Integer, Integer>();
@@ -18,23 +19,27 @@ public class LoungeStocking {
 		
 		Set<Integer> uniqueExpiryDays = new TreeSet<Integer>();
 		
+//		Step 1 : Map stock expiryDays with occurrences and store unique occurrence of expiryDays 
 		for(Integer key : stock) {
 			stockMap.put(key, stockMap.getOrDefault(key, 0)+1);
 			uniqueExpiryDays.add(key);
 		}
 		
+//		Step 2 : Map supplier expiryDays with occurrences and store unique occurrence of expiryDays
 		for(Integer key : supplier) {
 			supplierMap.put(key, supplierMap.getOrDefault(key, 0)+1);
 			uniqueExpiryDays.add(key);
 		}
 		
+//		Step 3 : Initialize variables for the simulation
 		int totalDemand = 0;
 		int maxCount = 0;
 		int stockExpiredCount = 0;
 		int supplierExpiredCount =0;
 		
-	//	System.out.println(uniqueExpiryDays.size());
+//		System.out.println(uniqueExpiryDays.size());
 		
+//		Step 4 : Simulate the usage of creamers day by day
 		for(Integer expiryDays : uniqueExpiryDays) {
 			
 			stockExpiredCount += stockMap.getOrDefault(expiryDays, 0);
@@ -43,14 +48,16 @@ public class LoungeStocking {
 			
 			totalDemand = (expiryDays + 1) * demand ;
 			
+//			Step 5 : Check if we have enough creamers for the day
 			if(stockExpiredCount > totalDemand) {
-				return -1;
+				return -1;		// Waste is Guaranteed.
 			}
 			
 			maxCount = Math.max(maxCount, supplierExpiredCount + stockExpiredCount - totalDemand);
 			
 		}
 		
+//		Step 6 : Return the maximum creamers that can be ordered without waste
 		return supplierCount - maxCount;
     }
 
