@@ -1,4 +1,4 @@
-package main.java.com.puzzles;
+package puzzles;
 
 /**
  * You are an avid rock collector who lives in southern California. Some rare and desirable rocks just became

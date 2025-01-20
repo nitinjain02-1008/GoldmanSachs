@@ -1,4 +1,4 @@
-package main.java.com.puzzles;
+package puzzles;
 
 import java.util.PriorityQueue;
 
