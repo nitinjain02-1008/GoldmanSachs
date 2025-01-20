@@ -174,14 +174,14 @@ public class DicountPrice {
 		
 //		System.out.println("Lowest price = " + findLowestPrice(products, discounts));
 		
-		System.out.println("Minimum purchase price = " + findMinimumPrice(products, discounts));	
+		System.out.println("Minimum purchase price = " + findMinimumPrice(products, discounts));	// Expected : 35
 		
 		List<List<String>> products_2 = List.of(List.of("10", "sale","january-sale"), List.of("200", "sale", "EMPTY"));
 		List<List<String>> discounts_2 = List.of(List.of("sale", "0", "10"), List.of("january-sale", "1", "10"));
 		
 //		System.out.println("Lowest price = " + findLowestPrice(products_2, discounts_2));
 		
-		System.out.println("Minimum purchase price = " + findMinimumPrice(products_2, discounts_2));	
+		System.out.println("Minimum purchase price = " + findMinimumPrice(products_2, discounts_2));	// Expected : 19
 	}
 
 }
