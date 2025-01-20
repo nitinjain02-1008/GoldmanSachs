@@ -2,7 +2,7 @@ package com.test.Altimetrik;
 
 import java.util.*;
 
-public class DicountPrice {
+public class DiscountPrice {
 
 	/*
 	 * 
