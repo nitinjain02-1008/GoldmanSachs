@@ -1,7 +1,6 @@
 package com.GoldmanSacs.Payment;
 
 import java.util.LinkedList;
-import java.util.Queue;
 
 /* Problem Name is &&& First NonRepeating &&& PLEASE DO NOT REMOVE THIS LINE. */
 

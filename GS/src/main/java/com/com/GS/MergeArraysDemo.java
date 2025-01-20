@@ -31,14 +31,14 @@ public class MergeArraysDemo{
         int m = arr2.length;
         
         int i =0, j=0;
-    //    int[] arr3 = new int[n+m] ;
+//        int[] arr3 = new int[n+m] ;
         if(n>m)
             return mergeArrays(arr2,arr1);
-        int temp;    
+//        int temp;    
         for(int k=0; k<n; k++){
         
             if(arr1[i]<=arr2[j]){
-                temp = arr2[j];
+//                temp = arr2[j];
                 arr2[k] = arr1[i];
                 arr1[i] = k;
                 i++;

@@ -1,14 +1,11 @@
 package com.GS;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class LongestSubarrayUniqueUser {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		List<Tuple> list1 = Arrays.asList(new Tuple(100, "user1"), new Tuple(200, "user2"), new Tuple(300, "user3"), new Tuple(400, "user1"));
+//		List<Tuple> list1 = Arrays.asList(new Tuple(100, "user1"), new Tuple(200, "user2"), new Tuple(300, "user3"), new Tuple(400, "user1"));
 
 	}
 	

@@ -1,7 +1,6 @@
 package com.Java.DesignPattern.Creational;
 
 import java.io.Serializable;
-import java.lang.reflect.Constructor;
 
 public class Singleton implements Serializable, Cloneable {
 	

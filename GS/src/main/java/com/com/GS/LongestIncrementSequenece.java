@@ -16,7 +16,7 @@ public class LongestIncrementSequenece {
 
 	public static List<Integer> LengthOfLIS(int[] nums) {
 		
-		int n = nums.length;
+//		int n = nums.length;
 		List<Integer> list = new ArrayList<>();
 		
 		list.add(nums[0]);
