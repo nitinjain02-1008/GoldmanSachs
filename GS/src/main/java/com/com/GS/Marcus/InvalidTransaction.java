@@ -41,7 +41,7 @@ public class InvalidTransaction {
 			
 			Transaction t1 = new Transaction(transaction);
 			
-			if(!)
+		//	if(!)
 		}
 		
 		return invalid;
