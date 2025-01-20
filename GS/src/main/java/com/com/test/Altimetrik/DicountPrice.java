@@ -35,6 +35,60 @@ public class DicountPrice {
 		The discounts array elements are in the form ['tag, 'type', 'amount'].
 
 */
+
+	public static double applyDiscount(Double retailPrice, Discount discount) {
+		
+		switch (discount.type) {
+		case 0:
+			return discount.amount;
+		case 1 :
+			return retailPrice * (1 - discount.amount / 100);
+		case 2 :
+			return retailPrice - discount.amount;
+		default:
+			return retailPrice;
+		}		
+	}
+	
+	public static int findMinimumPrice(List<List<String>> products, List<List<String>> discounts) {
+		
+		// Step 1: Parse discounts into a map where each tag maps to a list of possible discounts
+		Map<String, List<Discount>> discountMap = new HashMap<String, List<Discount>>();
+		
+		for(List<String> discount : discounts ) {
+			
+			discountMap.putIfAbsent(discount.get(0), new ArrayList<>());
+			discountMap.get(discount.get(0)).add(new Discount(Integer.parseInt(discount.get(1)), Double.parseDouble(discount.get(2))));
+		}
+		
+		int price = 0;
+		
+//		Step 2: Process each product
+		for(List<String> product : products) {
+			
+			double retailPrice = Double.parseDouble(product.get(0));
+			double minCalculatedPrice = retailPrice;
+			
+//			Step 3 :Apply each discount tag
+			for(int i = 1; i < product.size(); i++) {
+				String tag = product.get(i);
+				
+				if(!"EMPTY".equals(tag) && discountMap.containsKey(tag)) {
+					for(Discount discount : discountMap.get(tag)) {
+						double discountedPrice = applyDiscount(retailPrice, discount);
+						System.out.println("discounted price for each tag is = " + discountedPrice);
+						minCalculatedPrice = Math.min(minCalculatedPrice, discountedPrice);
+					}
+				}
+			}
+			
+//			Step 4: Round to the nearest integer and add to total cost
+			price += Math.round(minCalculatedPrice);
+		}
+		
+		return price;
+	}
+	
 	public static int calculatedPrice(int retailPrice, String tag, List<List<String>> discounts) {
 		
 		if(tag.equals("EMPTY"))
@@ -54,8 +108,11 @@ public class DicountPrice {
 				minDiscountedPrice = Math.min(minDiscountedPrice, Integer.parseInt(d.get(2)));
 				break;
 			case "1":
-				System.out.println(Math.floor((retailPrice * Integer.parseInt(d.get(2)))/100));
-				minDiscountedPrice = Math.min(minDiscountedPrice, retailPrice - Math.round((retailPrice * Integer.parseInt(d.get(2)))/100));
+//				System.out.println(Math.round((retailPrice * Integer.parseInt(d.get(2)))/100));
+				minDiscountedPrice =  Math.min(minDiscountedPrice, retailPrice - (int) Math.round((double)(retailPrice * Integer.parseInt(d.get(2)))/100 ));
+//				System.out.println(minDiscountedPrice);
+//				System.out.println(Math.round((double)(retailPrice * Integer.parseInt(d.get(2)))/100 ));
+//				System.out.println(minDiscountedPrice);
 				break;
 			case "2" :
 				minDiscountedPrice = Math.min(minDiscountedPrice, retailPrice - Integer.parseInt(d.get(2)));
@@ -87,12 +144,22 @@ public class DicountPrice {
 //				System.out.println(" Cal price by tag for product = " + calculatedPrice);
 				minCalculatedPrice = Math.min(minCalculatedPrice, calculatedPrice);
 			}
-//			System.out.println(" min cal Price for the product = " + minCalculatedPrice);
+//			System.out.println(" Min. calculated Price for the product = " + minCalculatedPrice);
 			price += minCalculatedPrice;
 		}
         
 		return price;
     }
+	
+	static class Discount{
+		int type;
+		double amount;
+		
+		public Discount(int type, double amount) {
+			this.type = type;
+			this.amount = amount;
+		}
+	}
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -107,7 +174,7 @@ public class DicountPrice {
 		
 		System.out.println("Lowest price = " + findLowestPrice(products, discounts));
 		
-		
+		System.out.println("Minimum purchase price = " + findMinimumPrice(products, discounts));		
 	}
 
 }
