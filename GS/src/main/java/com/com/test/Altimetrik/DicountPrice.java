@@ -76,7 +76,7 @@ public class DicountPrice {
 				if(!"EMPTY".equals(tag) && discountMap.containsKey(tag)) {
 					for(Discount discount : discountMap.get(tag)) {
 						double discountedPrice = applyDiscount(retailPrice, discount);
-						System.out.println("discounted price for each tag is = " + discountedPrice);
+//						System.out.println("discounted price for each tag is = " + discountedPrice);
 						minCalculatedPrice = Math.min(minCalculatedPrice, discountedPrice);
 					}
 				}
@@ -172,9 +172,16 @@ public class DicountPrice {
 		
 		List<List<String>> discounts = List.of(List.of("d0", "1", "27"), List.of("d1", "2", "5"));
 		
-		System.out.println("Lowest price = " + findLowestPrice(products, discounts));
+//		System.out.println("Lowest price = " + findLowestPrice(products, discounts));
 		
-		System.out.println("Minimum purchase price = " + findMinimumPrice(products, discounts));		
+		System.out.println("Minimum purchase price = " + findMinimumPrice(products, discounts));	
+		
+		List<List<String>> products_2 = List.of(List.of("10", "sale","january-sale"), List.of("200", "sale", "EMPTY"));
+		List<List<String>> discounts_2 = List.of(List.of("sale", "0", "10"), List.of("january-sale", "1", "10"));
+		
+//		System.out.println("Lowest price = " + findLowestPrice(products_2, discounts_2));
+		
+		System.out.println("Minimum purchase price = " + findMinimumPrice(products_2, discounts_2));	
 	}
 
 }
