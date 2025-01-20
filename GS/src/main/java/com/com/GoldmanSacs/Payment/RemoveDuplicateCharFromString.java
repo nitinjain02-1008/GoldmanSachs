@@ -1,6 +1,8 @@
 package com.GoldmanSacs.Payment;
 
+import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.Set;
 
 /* Problem Name is &&& First NonRepeating &&& PLEASE DO NOT REMOVE THIS LINE. */
 
@@ -15,32 +17,38 @@ import java.util.LinkedList;
 
 public class RemoveDuplicateCharFromString {
 
-  /**
-  * char findFirst(String input)
-  * Finds the first character that does not repeat anywhere in the input string
-  * If all characters are repeated, return 0
-  * Given "apple", the answer is "a"
-  * Given "racecars", the answer is "e"
-  * Given "ababdc", the answer is "d"
-  **/
-  public static char findFirst(String input)
-  {
-    // TODO: Implement solution
-    LinkedList<Character> queue = new  LinkedList<>();
-    String s = input.replaceAll("\\s+", "");
-    for(int i =0; i < s.length(); i++){
-        if(queue.contains(s.charAt(i))){
-          
-          queue.remove(queue.indexOf(s.charAt(i)));
-        }else{
-          queue.addLast(s.charAt(i));
-        }
-    }
-
-    if(queue.size()>0)
-      return (char)queue.getFirst();
-    return(0);
-  }
+	  /**
+	  * char findFirst(String input)
+	  * Finds the first character that does not repeat anywhere in the input string
+	  * If all characters are repeated, return 0
+	  * Given "apple", the answer is "a"
+	  * Given "racecars", the answer is "e"
+	  * Given "ababdc", the answer is "d"
+	  **/
+	public static char findFirst(String input)
+	{	
+		// TODO: Implement solution
+	    LinkedList<Character> queue = new  LinkedList<>();
+	    Set<Character> charSet = new HashSet<Character>();
+	    String s = input.replaceAll("\\s+", "");
+	    
+	    for(int i =0; i < s.length(); i++)
+	    {	        
+	    	if(queue.contains(s.charAt(i)) )
+	    	{	          
+	        	queue.remove(queue.indexOf(s.charAt(i)));
+	        }
+	    	else if(!charSet.contains(s.charAt(i))){
+	    		queue.addLast(s.charAt(i));
+	    		charSet.add(s.charAt(i));
+	        }
+	    }
+	
+	    if(queue.size()>0)
+	      return (char)queue.getFirst();
+	    
+	    return '0';
+	}
 
   /**
    * boolean doTestsPass()
@@ -50,13 +58,14 @@ public class RemoveDuplicateCharFromString {
   {
     // todo: implement more tests, please
     // feel free to make testing more elegant
-    String[] inputs = {"apple ale","racecars", "ababdc"};
+    String[] inputs = {"apple alea","racecars", "ababdc"};
     char[] outputs = {'0', 'e', 'd' };
 
     boolean result = true;
     for(int i = 0; i < inputs.length; i++ )
     {
-      result = result && findFirst(inputs[i]) == outputs[i];
+    	char c = findFirst(inputs[i]);
+      result = result &&  c == outputs[i];
       if(!result)
         System.out.println("Test failed for: " + inputs[i]);
       else
